@@ -1,0 +1,29 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": true,
+  "semi": true,
+  "bracketSpacing": true,
+  "arrowParens": "avoid",
+  "trailingComma": "es5",
+  "bracketSameLine": true,
+  "printWidth": 80,
+  "endOfLine": "lf",
+  "plugins": [
+    "prettier-plugin-tailwindcss",
+    "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-organize-imports"
+  ],
+  "importOrder": [
+    "<BUILTIN_MODULES>",
+    "^react",
+    "<THIRD_PARTY_MODULES>",
+    "^@inkdropapp",
+    "^@[/]",
+    "^[.].*$",
+    "<TYPES>",
+    "^[/].*$",
+    "[.]css$"
+  ],
+  "importOrderParserPlugins": ["typescript", "decorators-legacy"]
+}
