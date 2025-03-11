@@ -1,0 +1,23 @@
+<div class="mono grid grid-cols-11 overflow-hidden py-8 text-7xl">
+  <div
+    class="typed col-span-5 content-center justify-self-end whitespace-nowrap">
+    @for (item of typed(); track $index) {
+      <span class="fade-in typed-item" [class.text-error]="item.isError">{{
+        item.symbol
+      }}</span>
+    }
+  </div>
+  <div
+    class="current bg-light h-[10rem] w-full content-center rounded-xl px-2 text-center text-9xl"
+    [class.text-error]="currentType().isError === true">
+    {{ currentType().symbol }}
+  </div>
+  <div
+    class="should col-span-5 content-center justify-self-start whitespace-nowrap">
+    @for (item of should(); track $index) {
+      <span class="typed-item" [class.text-error]="item.isError">{{
+        item.symbol
+      }}</span>
+    }
+  </div>
+</div>

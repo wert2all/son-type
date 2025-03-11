@@ -23,6 +23,8 @@
     "@angular/platform-browser": "^19.2.1",
     "@angular/platform-browser-dynamic": "^19.2.1",
     "@angular/router": "^19.2.1",
+    "@ng-icons/core": "^31.0.0",
+    "@ng-icons/phosphor-icons": "^31.0.0",
     "@ngrx/signals": "^19.0.1",
     "@tailwindcss/postcss": "^4.0.12",
     "rxjs": "~7.8.2",
