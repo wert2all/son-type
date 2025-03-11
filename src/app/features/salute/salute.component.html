@@ -1,0 +1,12 @@
+<!-- congratulations.component.html -->
+<div class="salute-container">
+  @for (item of salute$ | async; track $index) {
+    <div
+      class="salute-item"
+      [style.left]="item.left"
+      [style.width]="item.width"
+      [style.height]="item.height"
+      [style.background-color]="item.backgroundColor"
+      [style.animation-duration]="item.animationDuration"></div>
+  }
+</div>
