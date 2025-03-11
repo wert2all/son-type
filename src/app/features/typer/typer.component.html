@@ -1,0 +1,13 @@
+<div class="bg-base-200 w-full rounded-xl py-22 shadow">
+  <div class="mono mx-10 overflow-hidden py-8 text-7xl">
+    @for (item of typed(); track $index) {
+      <span
+        class="me-1 rounded-xl px-2"
+        [class.bg-base-100]="item.state === SymbolState.Should"
+        [class.text-8xl]="item.state === SymbolState.Should"
+        [class.text-error]="item.isError"
+        >{{ item.symbol }}</span
+      >
+    }
+  </div>
+</div>
