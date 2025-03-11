@@ -32,6 +32,12 @@ importers:
       '@angular/router':
         specifier: ^19.2.1
         version: 19.2.1(@angular/common@19.2.1(@angular/core@19.2.1(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.1(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@19.2.1(@angular/animations@19.2.1(@angular/core@19.2.1(rxjs@7.8.2)(zone.js@0.15.0)))(@angular/common@19.2.1(@angular/core@19.2.1(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.1(rxjs@7.8.2)(zone.js@0.15.0)))(rxjs@7.8.2)
+      '@ng-icons/core':
+        specifier: ^31.0.0
+        version: 31.0.0(@angular/common@19.2.1(@angular/core@19.2.1(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.1(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
+      '@ng-icons/phosphor-icons':
+        specifier: ^31.0.0
+        version: 31.0.0
       '@ngrx/signals':
         specifier: ^19.0.1
         version: 19.0.1(@angular/core@19.2.1(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
@@ -1586,6 +1592,16 @@ packages:
   '@napi-rs/nice@1.0.1':
     resolution: {integrity: sha512-zM0mVWSXE0a0h9aKACLwKmD6nHcRiKrPpCfvaKqG1CqDEyjEawId0ocXxVzPMCAm6kkWr2P025msfxXEnt8UGQ==}
     engines: {node: '>= 10'}
+
+  '@ng-icons/core@31.0.0':
+    resolution: {integrity: sha512-/CTijAkloQzukFeX6U681LogYq+LK1euppUqbS8GbVPboqvGbtzP66rnzL9/wo6IwHK9i8bCLct6IUKlhfXMyA==}
+    peerDependencies:
+      '@angular/common': '>=18.0.0'
+      '@angular/core': '>=18.0.0'
+      rxjs: ^6.5.3 || ^7.4.0
+
+  '@ng-icons/phosphor-icons@31.0.0':
+    resolution: {integrity: sha512-V/wYVPrRA+cbP5zkO6o3dKsKGtxJ+nOe8k/p+x3XkzP56bEwTZW+SYwUOw3YEuPv0GaqzSQj4NugMePZtWDrlA==}
 
   '@ngrx/eslint-plugin@19.0.1':
     resolution: {integrity: sha512-cJjJ4oXPHaW9KTSyvujSGl+uvuA5ix5XNaMSxiaoNPRPlJ/EzSS6KKbY5XkxDPFj6hGLkO7vJPrCL27cGDjZ3Q==}
@@ -7751,6 +7767,17 @@ snapshots:
       '@napi-rs/nice-win32-ia32-msvc': 1.0.1
       '@napi-rs/nice-win32-x64-msvc': 1.0.1
     optional: true
+
+  '@ng-icons/core@31.0.0(@angular/common@19.2.1(@angular/core@19.2.1(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.1(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)':
+    dependencies:
+      '@angular/common': 19.2.1(@angular/core@19.2.1(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
+      '@angular/core': 19.2.1(rxjs@7.8.2)(zone.js@0.15.0)
+      rxjs: 7.8.2
+      tslib: 2.8.1
+
+  '@ng-icons/phosphor-icons@31.0.0':
+    dependencies:
+      tslib: 2.8.1
 
   '@ngrx/eslint-plugin@19.0.1(@typescript-eslint/utils@8.26.0(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.22.0(jiti@2.4.2))(typescript-eslint@8.26.0(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2))(typescript@5.8.2)':
     dependencies:

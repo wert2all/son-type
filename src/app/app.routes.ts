@@ -4,6 +4,8 @@ export const routes: Routes = [
   {
     path: '**',
     loadComponent: () =>
-      import('./features/typer/typer.component').then(t => t.TyperComponent),
+      import('./features/typer/typer.component').then(
+        t => t.TyperContainerComponent
+      ),
   },
 ];
