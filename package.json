@@ -77,5 +77,10 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "commit-and-tag-version": {
+    "scripts": {
+      "precommit": "prettier . --write >/dev/null"
+    }
   }
 }
