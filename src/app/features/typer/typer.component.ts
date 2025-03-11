@@ -2,71 +2,59 @@ import {
   Component,
   computed,
   HostListener,
+  inject,
   linkedSignal,
   signal,
 } from '@angular/core';
+import { GeneratorService } from '../generator.service';
 
-enum SymbolState {
-  Typed,
-  Should,
-  None,
+interface Symbol {
+  symbol: string;
+  isError: boolean;
 }
 @Component({
   standalone: true,
   selector: 'app-typer',
   templateUrl: './typer.component.html',
+  styleUrls: ['./typer.component.scss'],
 })
 export class TyperComponent {
-  SymbolState = SymbolState;
-
+  private generator = inject(GeneratorService);
   private mask = signal('0123456789');
-  private generated = computed(() =>
-    this.generateString(100, this.mask()).map(symbol => ({
+  private generated = computed(() => {
+    return this.generator.generate(100, this.mask()).map(symbol => ({
       symbol: symbol,
-      state: SymbolState.None,
       isError: false,
-    }))
-  );
-
-  typed = linkedSignal({
-    source: () => this.generated(),
-    computation: res => {
-      const first = res.slice(0, 1)[0];
-
-      return [{ ...first, state: SymbolState.Should }, ...res.slice(1)];
-    },
+    }));
   });
-  private generateString(length: number, symbols: string): string[] {
-    if (length <= 0 || symbols.length === 0) {
-      return [];
-    }
 
-    const result = [];
-    for (let i = 0; i < length; i++) {
-      // eslint-disable-next-line sonarjs/pseudo-random
-      const randomIndex = Math.floor(Math.random() * symbols.length);
-      result.push(symbols.charAt(randomIndex));
-    }
-    return result;
-  }
+  typed = signal<Symbol[]>([]);
+  currentType = linkedSignal({
+    source: () => this.generated(),
+    computation: generated => generated.slice(0, 1)[0],
+  });
+  should = linkedSignal({
+    source: () => this.generated(),
+    computation: generated => generated.slice(1),
+  });
 
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     this.typed.update(values => {
       if (event.key != 'Enter') {
-        const typedIndex = values.findIndex(
-          v => v.state === SymbolState.Should
-        );
-
-        if (typedIndex != -1) {
-          if (values[typedIndex].symbol === event.key) {
-            values[typedIndex].state = SymbolState.Typed;
-            if (values[typedIndex + 1]) {
-              values[typedIndex + 1].state = SymbolState.Should;
-            }
-          } else {
-            values[typedIndex].isError = true;
-          }
+        const current: Symbol | undefined = this.currentType();
+        if (current?.symbol === event.key) {
+          this.typed.update(values => {
+            values.push(current);
+            return values;
+          });
+          this.currentType.set(this.should().slice(0, 1)[0]);
+          this.should.update(values => values.slice(1));
+        } else {
+          this.currentType.update(current => {
+            current.isError = true;
+            return current;
+          });
         }
       }
       return values;
