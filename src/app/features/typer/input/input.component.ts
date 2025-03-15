@@ -18,13 +18,16 @@ import { TyperMask, TyperSymbol } from '../typer.types';
 })
 export class TyperInputComponent {
   mask = input.required<TyperMask | null>();
+  count = input(100);
 
   private generator = inject(GeneratorService);
   private generated = computed(() =>
-    this.generator.generate(100, this.mask()?.mask || '').map(symbol => ({
-      symbol: symbol,
-      isError: false,
-    }))
+    this.generator
+      .generate(this.count(), this.mask()?.mask || '')
+      .map(symbol => ({
+        symbol: symbol,
+        isError: false,
+      }))
   );
 
   typed = signal<TyperSymbol[]>([]);
