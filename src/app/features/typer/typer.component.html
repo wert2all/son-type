@@ -1,8 +1,4 @@
-<div class="top-menu">
-  <div class="tooltip" data-tip="current mask: numbers">
-    <button class="btn btn-neutral btn-square">
-      <ng-icon name="phosphorPassword"></ng-icon>
-    </button>
-  </div>
-</div>
-<app-typer-input />
+<app-typer-menu
+  [masks]="masks()"
+  (updateCurrentMask)="currentMask.set($event)" />
+<app-typer-input [mask]="currentMask()" />
