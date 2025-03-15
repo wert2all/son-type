@@ -41,6 +41,13 @@ export class TyperInputComponent {
     computation: generated => generated.slice(1),
   });
 
+  isFinished = computed(
+    () =>
+      this.generated().length !== 0 &&
+      this.should().length === 0 &&
+      this.typed().length === this.generated().length
+  );
+
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     this.typed.update(values => {
