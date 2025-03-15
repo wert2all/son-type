@@ -1,10 +1,12 @@
 import {
   Component,
   computed,
+  effect,
   HostListener,
   inject,
   input,
   linkedSignal,
+  output,
   signal,
 } from '@angular/core';
 import { GeneratorService } from '../../generator.service';
@@ -19,6 +21,8 @@ import { TyperMask, TyperSymbol } from '../typer.types';
 export class TyperInputComponent {
   mask = input.required<TyperMask | null>();
   count = input(100);
+
+  finished = output();
 
   private generator = inject(GeneratorService);
   private generated = computed(() =>
@@ -40,6 +44,21 @@ export class TyperInputComponent {
     source: () => this.generated(),
     computation: generated => generated.slice(1),
   });
+
+  private isFinished = computed(
+    () =>
+      this.generated().length !== 0 &&
+      this.should().length === 0 &&
+      this.typed().length === this.generated().length
+  );
+
+  constructor() {
+    effect(() => {
+      if (this.isFinished()) {
+        this.finished.emit();
+      }
+    });
+  }
 
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {

@@ -15,4 +15,9 @@ import { TyperMask } from './typer.types';
 export class TyperContainerComponent {
   masks = signal<TyperMask[]>([{ title: 'numbers', mask: '0123456789' }]);
   currentMask = signal<TyperMask | null>(null);
+  protected isFinished = signal(false);
+
+  toggleFinished() {
+    this.isFinished.set(!this.isFinished());
+  }
 }
