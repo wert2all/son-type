@@ -19,4 +19,5 @@ export class TyperContainerComponent {
     { title: 'number worlds', mask: '0123456789 ' },
   ]);
   currentMask = signal<TyperMask | null>(null);
+  isFinished = signal(false);
 }
