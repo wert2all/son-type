@@ -1,7 +1,7 @@
 /* eslint-disable sonarjs/pseudo-random */
 import { Component, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { timer } from 'rxjs';
+import { takeWhile, timer } from 'rxjs';
 
 interface SaluteDot {
   left: string;
@@ -25,18 +25,23 @@ export class SaluteComponent {
     '#ff00ff',
     '#00ffff',
   ];
-
-  private timer$ = timer(0, 4000);
+  private picks = signal(0);
+  private timer$ = timer(0, 4000).pipe(
+    takeUntilDestroyed(),
+    takeWhile(() => this.picks() < 10)
+  );
   salute = signal<SaluteDot[]>([]);
 
   constructor() {
-    this.timer$.pipe(takeUntilDestroyed()).subscribe(() => {
+    this.timer$.subscribe(() => {
       this.salute.update(values => {
         values.push(...this.generateFire(50));
         return values;
       });
+      this.picks.update(value => value + 1);
     });
   }
+
   private generateFire(count: number): SaluteDot[] {
     return Array(count)
       .fill(0)
