@@ -1,13 +1,20 @@
 /* eslint-disable sonarjs/pseudo-random */
-import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
-import { map, timer } from 'rxjs';
+import { Component, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { timer } from 'rxjs';
+
+interface SaluteDot {
+  left: string;
+  width: string;
+  height: string;
+  backgroundColor: string;
+  animationDuration: string;
+}
 
 @Component({
   selector: 'app-salute',
   templateUrl: './salute.component.html',
   styleUrls: ['./salute.component.scss'],
-  imports: [AsyncPipe],
 })
 export class SaluteComponent {
   private colors: string[] = [
@@ -19,19 +26,28 @@ export class SaluteComponent {
     '#00ffff',
   ];
 
-  salute$ = timer(0, 4000).pipe(
-    map(() =>
-      Array(50)
-        .fill(0)
-        .map(() => ({
-          left: `${Math.random() * 100}%`,
-          width: `${Math.random() * 10 + 5}px`,
-          height: `${Math.random() * 10 + 5}px`,
-          backgroundColor: this.randomColor(),
-          animationDuration: `${Math.random() * 3 + 2}s`,
-        }))
-    )
-  );
+  private timer$ = timer(0, 4000);
+  salute = signal<SaluteDot[]>([]);
+
+  constructor() {
+    this.timer$.pipe(takeUntilDestroyed()).subscribe(() => {
+      this.salute.update(values => {
+        values.push(...this.generateFire(50));
+        return values;
+      });
+    });
+  }
+  private generateFire(count: number): SaluteDot[] {
+    return Array(count)
+      .fill(0)
+      .map(() => ({
+        left: `${Math.random() * 100}%`,
+        width: `${Math.random() * 10 + 5}px`,
+        height: `${Math.random() * 10 + 5}px`,
+        backgroundColor: this.randomColor(),
+        animationDuration: `${Math.random() * 3 + 2}s`,
+      }));
+  }
 
   private randomColor() {
     return this.colors[Math.floor(Math.random() * this.colors.length)];
