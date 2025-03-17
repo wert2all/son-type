@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.4](https://github.com/wert2all/son-type/compare/v0.0.3...v0.0.4) (2025-03-17)
+
+### Features
+
+- add count of fires of salute ([4f6233a](https://github.com/wert2all/son-type/commit/4f6233a6f45c2f0dae560356ff6a60b76fdc38ec))
+- add is finished signal ([b26b513](https://github.com/wert2all/son-type/commit/b26b5137b1ec3ccd1ee8d2700adf9c12bcee7a69))
+- show salute if exesize was finished ([22c92e0](https://github.com/wert2all/son-type/commit/22c92e0faf5bd264e7073057bd047d388936ef5e))
+
+### Bug Fixes
+
+- add count parameter ([7c3b00c](https://github.com/wert2all/son-type/commit/7c3b00cac34374702ba748248fc1351c468f383f))
+- fix count ([0e3a4ff](https://github.com/wert2all/son-type/commit/0e3a4ff4a32669a290f0ca3f3fa6aec77e473f86))
+- fix salute ([ef8455d](https://github.com/wert2all/son-type/commit/ef8455dba6c784c2555ab25da92d3664b770bb3c))
+
 ## [0.0.3](https://github.com/wert2all/son-type/compare/v0.0.2...v0.0.3) (2025-03-15)
 
 ### Features
