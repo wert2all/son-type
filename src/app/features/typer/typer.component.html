@@ -1,6 +1,11 @@
 <app-typer-menu
   [masks]="masks()"
   (updateCurrentMask)="currentMask.set($event)" />
-<app-typer-input [mask]="currentMask()" [count]="2" />
+<app-typer-input
+  [mask]="currentMask()"
+  [count]="100"
+  (finished)="isFinished.set($event)" />
 
-<app-salute />
+@if (isFinished()) {
+  <app-salute />
+}
