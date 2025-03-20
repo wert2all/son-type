@@ -17,6 +17,8 @@ export class TyperContainerComponent {
   masks = signal<TyperMask[]>([
     { title: 'numbers', mask: '0123456789' },
     { title: 'number worlds', mask: '0123456789 ' },
+    { title: 'letters', mask: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' },
+    { title: 'worlds', mask: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ' },
   ]);
   currentMask = signal<TyperMask | null>(null);
   isFinished = signal(false);
