@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.5](https://github.com/wert2all/son-type/compare/v0.0.4...v0.0.5) (2025-03-20)
+
+### Features
+
+- add letters to masks ([0522ffa](https://github.com/wert2all/son-type/commit/0522ffa88f2dcd35b9812f815f831c8e81e9fb86))
+
+### Bug Fixes
+
+- mask menu ([9264af5](https://github.com/wert2all/son-type/commit/9264af553460501ceafbfebaec0bfcd87311db52))
+
 ## [0.0.4](https://github.com/wert2all/son-type/compare/v0.0.3...v0.0.4) (2025-03-17)
 
 ### Features
