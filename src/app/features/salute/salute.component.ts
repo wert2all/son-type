@@ -1,7 +1,7 @@
 /* eslint-disable sonarjs/pseudo-random */
-import { Component, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { takeWhile, timer } from 'rxjs';
+import { Component, input, signal } from '@angular/core';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { EMPTY, map, switchMap, take, timer } from 'rxjs';
 
 interface SaluteDot {
   left: string;
@@ -17,6 +17,8 @@ interface SaluteDot {
   styleUrls: ['./salute.component.scss'],
 })
 export class SaluteComponent {
+  show = input(false);
+
   private colors: string[] = [
     '#ff0000',
     '#00ff00',
@@ -25,20 +27,20 @@ export class SaluteComponent {
     '#ff00ff',
     '#00ffff',
   ];
-  private picks = signal(0);
-  private timer$ = timer(0, 4000).pipe(
-    takeUntilDestroyed(),
-    takeWhile(() => this.picks() < 10)
+  protected salute = signal<SaluteDot[]>([]);
+  private timer$ = toObservable(this.show).pipe(
+    switchMap(val => (val ? timer(0, 3000) : EMPTY)),
+    map(() => this.generateFire(50)),
+    take(20),
+    takeUntilDestroyed()
   );
-  salute = signal<SaluteDot[]>([]);
 
   constructor() {
-    this.timer$.subscribe(() => {
+    this.timer$.subscribe(dots => {
       this.salute.update(values => {
-        values.push(...this.generateFire(50));
+        values.push(...dots);
         return values;
       });
-      this.picks.update(value => value + 1);
     });
   }
 

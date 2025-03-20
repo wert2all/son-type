@@ -6,6 +6,4 @@
   [count]="100"
   (finished)="isFinished.set($event)" />
 
-@if (isFinished()) {
-  <app-salute />
-}
+<app-salute [show]="isFinished()" />
