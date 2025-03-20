@@ -1,4 +1,4 @@
-import { Component, input, linkedSignal, output } from '@angular/core';
+import { Component, input, linkedSignal, output, signal } from '@angular/core';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { phosphorPassword } from '@ng-icons/phosphor-icons/regular';
 import { TyperMask } from '../typer.types';
@@ -22,9 +22,11 @@ export class TyperMenuComponent {
       return current;
     },
   });
+  isOpened = signal(false);
 
   updateCurrent(mask: TyperMask) {
     this.currentMask.set(mask);
     this.updateCurrentMask.emit(mask);
+    this.isOpened.set(false);
   }
 }
