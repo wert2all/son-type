@@ -11,7 +11,9 @@ export class GeneratorService {
     for (let i = 0; i < length; i++) {
       // eslint-disable-next-line sonarjs/pseudo-random
       const randomIndex = Math.floor(Math.random() * symbols.length);
-      result.push(symbols.charAt(randomIndex));
+      const ramdomChar = symbols.charAt(randomIndex);
+
+      result.push(ramdomChar);
     }
     return result;
   }
