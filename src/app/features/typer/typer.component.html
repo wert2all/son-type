@@ -4,6 +4,7 @@
 <app-typer-input
   [mask]="currentMask()"
   [count]="10"
+  [restart]="restartTick()"
   (finished)="isFinished.set($event)" />
 
 <app-salute [show]="isFinished()" />
