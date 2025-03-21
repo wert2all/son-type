@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.7](https://github.com/wert2all/son-type/compare/v0.0.6...v0.0.7) (2025-03-21)
+
+### Features
+
+- create settings ([16a26c7](https://github.com/wert2all/son-type/commit/16a26c7d8d3be31c84290ca1bcabcaf5212a32b0))
+
 ## [0.0.6](https://github.com/wert2all/son-type/compare/v0.0.5...v0.0.6) (2025-03-21)
 
 ### Features
