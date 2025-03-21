@@ -3,7 +3,16 @@
   (updateCurrentMask)="currentMask.set($event)" />
 <app-typer-input
   [mask]="currentMask()"
-  [count]="100"
+  [count]="10"
   (finished)="isFinished.set($event)" />
 
 <app-salute [show]="isFinished()" />
+<app-shared-modal
+  [show]="isFinished()"
+  [closeOnPrimary]="true"
+  (closed)="restartTask()"
+  (primary)="restartTask()">
+  <h2 class="text-center text-2xl font-bold">
+    Great job on finishing the task!
+  </h2>
+</app-shared-modal>

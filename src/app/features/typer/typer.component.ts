@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { provideIcons } from '@ng-icons/core';
 import { phosphorPassword } from '@ng-icons/phosphor-icons/regular';
+import { SharedModalComponent } from '../../shared/modal/modal.component';
 import { SaluteComponent } from '../salute/salute.component';
 import { TyperInputComponent } from './input/input.component';
 import { TyperMenuComponent } from './menu/menu.component';
@@ -10,7 +11,12 @@ import { TyperMask } from './typer.types';
   standalone: true,
   selector: 'app-typer-container',
   templateUrl: './typer.component.html',
-  imports: [TyperInputComponent, TyperMenuComponent, SaluteComponent],
+  imports: [
+    TyperInputComponent,
+    TyperMenuComponent,
+    SaluteComponent,
+    SharedModalComponent,
+  ],
   viewProviders: [provideIcons({ phosphorPassword })],
 })
 export class TyperContainerComponent {
@@ -22,4 +28,8 @@ export class TyperContainerComponent {
   ]);
   currentMask = signal<TyperMask | null>(null);
   isFinished = signal(false);
+
+  restartTask() {
+    console.log('task restart');
+  }
 }
