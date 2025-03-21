@@ -1,13 +1,19 @@
-<app-typer-menu
-  [masks]="masks()"
-  (updateCurrentMask)="currentMask.set($event)" />
+<a
+  class="btn btn-neutral btn-square"
+  tabindex="0"
+  (click)="openSettings.set(true)"
+  (keypress.enter)="openSettings.set(true)">
+  <ng-icon name="phosphorGearSix" size="32"></ng-icon>
+</a>
+
 <app-typer-input
   [mask]="currentMask()"
-  [count]="10"
+  [count]="settings().count"
   [restart]="restartTick()"
   (finished)="isFinished.set($event)" />
 
 <app-salute [show]="isFinished()" />
+
 <app-shared-modal
   [show]="isFinished()"
   [closeOnPrimary]="true"
@@ -16,4 +22,15 @@
   <h2 class="text-center text-2xl font-bold">
     Great job on finishing the task!
   </h2>
+</app-shared-modal>
+
+<app-shared-modal
+  [show]="openSettings()"
+  [closeOnPrimary]="true"
+  title="settings"
+  primaryButtonTitle="Save"
+  (closed)="openSettings.set(false)">
+  <app-typer-settings
+    [settings]="settings()"
+    (updated)="settings.set($event)" />
 </app-shared-modal>

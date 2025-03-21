@@ -18,6 +18,7 @@ export class SharedModalComponent implements AfterViewInit {
   private modal: ElementRef<HTMLDialogElement> | null = null;
   show = input.required<boolean>();
   closeOnPrimary = input(false);
+  primaryButtonTitle = input('Close');
 
   title = input<string>();
   closed = output<boolean>();

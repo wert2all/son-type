@@ -8,7 +8,9 @@
     <h3 class="mb-12 text-3xl font-bold">{{ title() }}</h3>
     <ng-content></ng-content>
     <div class="modal-action">
-      <button class="btn btn-primary" (click)="primaryAction()">Close</button>
+      <button class="btn btn-primary" (click)="primaryAction()">
+        {{ primaryButtonTitle() }}
+      </button>
     </div>
   </div>
   <form method="dialog" class="modal-backdrop">
