@@ -7,7 +7,6 @@ import {
   input,
   linkedSignal,
   output,
-  signal,
 } from '@angular/core';
 import { GeneratorService } from '../../generator.service';
 import { TyperMask, TyperSymbol } from '../typer.types';
@@ -21,19 +20,26 @@ import { TyperMask, TyperSymbol } from '../typer.types';
 export class TyperInputComponent {
   mask = input.required<TyperMask | null>();
   count = input(100);
+  restart = input<number>();
   finished = output<boolean>();
 
   private generator = inject(GeneratorService);
   private generated = computed(() =>
     this.generator
-      .generate(this.count(), this.mask()?.mask || '')
+      .generate(
+        this.restart() ? this.count() : this.count() + 0,
+        this.mask()?.mask || ''
+      )
       .map(symbol => ({
         symbol: symbol,
         isError: false,
       }))
   );
 
-  typed = signal<TyperSymbol[]>([]);
+  typed = linkedSignal({
+    source: () => this.generated(),
+    computation: (): TyperSymbol[] => [],
+  });
   currentType = linkedSignal({
     source: () => this.generated(),
     computation: (generated): TyperSymbol | undefined =>
@@ -56,6 +62,7 @@ export class TyperInputComponent {
       this.finished.emit(this.isFinished());
     });
   }
+
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     this.typed.update(values => {

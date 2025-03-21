@@ -28,8 +28,9 @@ export class TyperContainerComponent {
   ]);
   currentMask = signal<TyperMask | null>(null);
   isFinished = signal(false);
+  restartTick = signal<number>(0);
 
   restartTask() {
-    console.log('task restart');
+    this.restartTick.set(Math.floor(Date.now() / 1000));
   }
 }
