@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.6](https://github.com/wert2all/son-type/compare/v0.0.5...v0.0.6) (2025-03-21)
+
+### Features
+
+- create modal window component ([f874abc](https://github.com/wert2all/son-type/commit/f874abcc6d64abdd0d3c8a27d656c64f41b93b94))
+- restart task ([e0fb64c](https://github.com/wert2all/son-type/commit/e0fb64c0446e8c9d8d406c87c26a7f4928b7014b))
+
+### Bug Fixes
+
+- fix salute ([95c5c49](https://github.com/wert2all/son-type/commit/95c5c497968d31a0392d38330f051f1af417f987))
+
 ## [0.0.5](https://github.com/wert2all/son-type/compare/v0.0.4...v0.0.5) (2025-03-20)
 
 ### Features
