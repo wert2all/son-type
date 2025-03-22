@@ -5,7 +5,10 @@
         ✕
       </button>
     </form>
-    <h3 class="mb-12 text-3xl font-bold">{{ title() }}</h3>
+    @if (title() !== '' && title() !== null) {
+      <h3 class="text-3xl font-bold">{{ title() }}</h3>
+      <div class="divider mt-0"></div>
+    }
     <ng-content></ng-content>
     <div class="modal-action">
       <button class="btn btn-primary" (click)="primaryAction()">

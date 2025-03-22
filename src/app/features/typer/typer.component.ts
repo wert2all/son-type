@@ -37,6 +37,7 @@ export class TyperContainerComponent {
   protected currentMask = computed(
     () => this.settings().masks[this.settings().activeMask]
   );
+  rating = signal(null);
 
   restartTask() {
     this.restartTick.set(Math.floor(Date.now() / 1000));

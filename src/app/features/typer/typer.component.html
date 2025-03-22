@@ -19,7 +19,7 @@
   [closeOnPrimary]="true"
   (closed)="restartTask()"
   (primary)="restartTask()">
-  <app-typed-congratulation />
+  <app-typed-congratulation [rating]="rating()" />
 </app-shared-modal>
 
 <app-shared-modal
