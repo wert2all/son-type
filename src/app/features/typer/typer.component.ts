@@ -33,12 +33,16 @@ export class TyperContainerComponent {
   isFinished = signal(false);
   restartTick = signal<number>(0);
   openSettings = signal(false);
+  rating = signal<number | null>(null);
+
   settings = this.store.selectSignal(sharedFeatures.selectTyperSettings);
 
   protected currentMask = computed(
     () => this.settings().masks[this.settings().activeMask]
   );
-  rating = signal<number | null>(null);
+  protected wordLength = computed(() =>
+    this.currentMask().useWords ? this.settings().letters : 0
+  );
 
   restartTask() {
     this.isFinished.set(false);
