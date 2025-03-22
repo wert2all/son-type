@@ -13,7 +13,9 @@ import { settingsFeature } from '../../store/settings.reducers';
 export class SettingsFormComponent {
   private store = inject(Store);
 
-  protected typerSettings = this.store.selectSignal(settingsFeature.selectTyper);
+  protected typerSettings = this.store.selectSignal(
+    settingsFeature.selectTyper
+  );
   protected masks = computed(() => Object.keys(this.typerSettings().masks));
   protected form = new FormGroup({
     activeMask: new FormControl<TyperMaskName>('numbers'),
