@@ -1,14 +1,15 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import {
   phosphorGearSix,
   phosphorPassword,
 } from '@ng-icons/phosphor-icons/regular';
+import { Store } from '@ngrx/store';
 import { SharedModalComponent } from '../../shared/modal/modal.component';
+import { sharedFeatures } from '../../shared/store/shared.reducers';
 import { SaluteComponent } from '../salute/salute.component';
 import { SettingsFormComponent } from '../settings/shared/form/form.component';
 import { TyperInputComponent } from './input/input.component';
-import { TYPER_MASKS, TyperSettings } from './typer.types';
 
 @Component({
   standalone: true,
@@ -24,15 +25,12 @@ import { TYPER_MASKS, TyperSettings } from './typer.types';
   viewProviders: [provideIcons({ phosphorPassword, phosphorGearSix })],
 })
 export class TyperContainerComponent {
+  private store = inject(Store);
+
   isFinished = signal(false);
   restartTick = signal<number>(0);
   openSettings = signal(false);
-  settings = signal<TyperSettings>({
-    masks: TYPER_MASKS,
-    activeMask: 'numbers',
-    count: 10,
-    letters: 5,
-  });
+  settings = this.store.selectSignal(sharedFeatures.selectTyperSettings);
 
   protected currentMask = computed(
     () => this.settings().masks[this.settings().activeMask]
