@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.9](https://github.com/wert2all/son-type/compare/v0.0.8...v0.0.9) (2025-03-22)
+
+### Features
+
+- add showing rating ([8ed0bd6](https://github.com/wert2all/son-type/commit/8ed0bd6b5b42b4791fcc97c08ed350890d080960))
+- calc rating ([183cf18](https://github.com/wert2all/son-type/commit/183cf18f4295a46c33cc20d6aedd263524e67463))
+- sync settings to localStorage ([687bc00](https://github.com/wert2all/son-type/commit/687bc00a46ab2dd7fd6a57e9191c1b66024ccb4b))
+
+### Bug Fixes
+
+- cast count to number ([8e15925](https://github.com/wert2all/son-type/commit/8e15925bc2415426143a49a638c758110a90b6e2))
+
 ## [0.0.8](https://github.com/wert2all/son-type/compare/v0.0.7...v0.0.8) (2025-03-22)
 
 ### Features
