@@ -35,10 +35,10 @@ export class SettingsFormComponent {
       this.form.valueChanges.subscribe(value => {
         let typerSettings = this.typerSettings();
         if (value.count != null && typerSettings.count !== value.count) {
-          typerSettings = { ...typerSettings, count: value.count };
+          typerSettings = { ...typerSettings, count: Number(value.count) };
         }
         if (value.letters != null && typerSettings.letters !== value.letters) {
-          typerSettings = { ...typerSettings, letters: value.letters };
+          typerSettings = { ...typerSettings, letters: Number(value.letters) };
         }
         if (
           value.activeMask != null &&
