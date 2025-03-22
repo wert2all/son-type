@@ -20,6 +20,7 @@ import { TyperMask, TyperSymbol } from '../typer.types';
 export class TyperInputComponent {
   mask = input.required<TyperMask | null>();
   count = input(100);
+  wordLength = input(0);
   restart = input<number>();
   finished = output<TyperSymbol[]>();
 
@@ -29,7 +30,7 @@ export class TyperInputComponent {
     const count = this.count();
 
     return this.generator
-      .generate(count, this.mask()?.mask || '')
+      .generate(count, this.mask()?.mask || '', this.wordLength())
       .map(symbol => ({
         symbol: symbol,
         isError: false,
