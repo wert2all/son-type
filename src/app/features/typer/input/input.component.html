@@ -7,11 +7,9 @@
       }}</span>
     }
   </div>
-  <div
-    class="current bg-light h-[10rem] w-full content-center rounded-xl px-2 text-center text-9xl"
-    [class.text-error]="currentType()?.isError === true">
-    {{ currentType()?.symbol }}
-  </div>
+  <app-shared-value-card
+    [value]="currentType()?.symbol || ''"
+    [textClass]="currentType()?.isError ? 'text-error' : ''" />
   <div
     class="should col-span-5 content-center justify-self-start whitespace-nowrap">
     @for (item of should(); track $index) {

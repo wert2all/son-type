@@ -33,7 +33,7 @@ export class TyperContainerComponent {
   isFinished = signal(false);
   restartTick = signal<number>(0);
   openSettings = signal(false);
-  rating = signal<number | null>(null);
+  rating = signal<string | null>(null);
 
   settings = this.store.selectSignal(sharedFeatures.selectTyperSettings);
 
@@ -53,7 +53,9 @@ export class TyperContainerComponent {
     const errors =
       this.settings().count - typed.filter(symbol => symbol.isError).length;
 
-    this.rating.set(Math.floor((errors / this.settings().count) * 10));
+    this.rating.set(
+      Math.floor((errors / this.settings().count) * 10).toString()
+    );
     this.isFinished.set(true);
   }
 }

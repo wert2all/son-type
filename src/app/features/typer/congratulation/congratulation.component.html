@@ -1,8 +1,6 @@
-<h2 class="mt-10 text-center text-2xl font-bold">
+<h2 class="mt-10 mb-10 text-center text-2xl font-bold">
   Great job on finishing the task!
 </h2>
 @if (rating(); as rating) {
-  <div class="mt-10 text-center text-9xl">
-    <span class="text-secondary bg-light rounded-xl px-2">{{ rating }}</span>
-  </div>
+  <app-shared-value-card [value]="rating" textClass="text-secondary" />
 }

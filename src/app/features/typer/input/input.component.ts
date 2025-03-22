@@ -8,12 +8,13 @@ import {
   linkedSignal,
   output,
 } from '@angular/core';
+import { SharedValueCardComponent } from '../../../shared/value-card/value-card.component';
 import { GeneratorService } from '../../generator.service';
 import { TyperMask, TyperSymbol } from '../typer.types';
 
 @Component({
   selector: 'app-typer-input',
-  imports: [],
+  imports: [SharedValueCardComponent],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
 })
