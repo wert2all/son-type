@@ -30,7 +30,7 @@
   title="settings"
   primaryButtonTitle="Save"
   (closed)="openSettings.set(false)">
-  <app-typer-settings
+  <app-shared-settings-form
     [settings]="settings()"
     (updated)="settings.set($event)" />
 </app-shared-modal>
