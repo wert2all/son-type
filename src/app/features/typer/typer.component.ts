@@ -9,6 +9,7 @@ import { SharedModalComponent } from '../../shared/modal/modal.component';
 import { sharedFeatures } from '../../shared/store/shared.reducers';
 import { SaluteComponent } from '../salute/salute.component';
 import { SettingsFormComponent } from '../settings/shared/form/form.component';
+import { TypedCongratulationComponent } from './congratulation/congratulation.component';
 import { TyperInputComponent } from './input/input.component';
 
 @Component({
@@ -21,6 +22,7 @@ import { TyperInputComponent } from './input/input.component';
     SharedModalComponent,
     NgIconComponent,
     SettingsFormComponent,
+    TypedCongratulationComponent,
   ],
   viewProviders: [provideIcons({ phosphorPassword, phosphorGearSix })],
 })
