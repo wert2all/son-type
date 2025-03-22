@@ -11,6 +11,7 @@ import { SaluteComponent } from '../salute/salute.component';
 import { SettingsFormComponent } from '../settings/shared/form/form.component';
 import { TypedCongratulationComponent } from './congratulation/congratulation.component';
 import { TyperInputComponent } from './input/input.component';
+import { TyperSymbol } from './typer.types';
 
 @Component({
   standalone: true,
@@ -37,9 +38,18 @@ export class TyperContainerComponent {
   protected currentMask = computed(
     () => this.settings().masks[this.settings().activeMask]
   );
-  rating = signal(null);
+  rating = signal<number | null>(null);
 
   restartTask() {
+    this.isFinished.set(false);
     this.restartTick.set(Math.floor(Date.now() / 1000));
+  }
+
+  finished(typed: TyperSymbol[]) {
+    const errors =
+      this.settings().count - typed.filter(symbol => symbol.isError).length;
+
+    this.rating.set(Math.floor((errors / this.settings().count) * 10));
+    this.isFinished.set(true);
   }
 }
