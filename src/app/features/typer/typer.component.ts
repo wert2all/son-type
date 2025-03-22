@@ -6,8 +6,8 @@ import {
 } from '@ng-icons/phosphor-icons/regular';
 import { SharedModalComponent } from '../../shared/modal/modal.component';
 import { SaluteComponent } from '../salute/salute.component';
-import { TyperInputComponent } from './input/input.component';
 import { SettingsFormComponent } from '../settings/shared/form/form.component';
+import { TyperInputComponent } from './input/input.component';
 import { TYPER_MASKS, TyperSettings } from './typer.types';
 
 @Component({

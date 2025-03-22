@@ -1,6 +1,5 @@
 import { TyperMask, TyperMaskName } from '../../typer/typer.types';
 
-
 export interface SettingsState {
   typer: TyperSettings;
 }
