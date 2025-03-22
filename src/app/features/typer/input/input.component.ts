@@ -24,17 +24,17 @@ export class TyperInputComponent {
   finished = output<boolean>();
 
   private generator = inject(GeneratorService);
-  private generated = computed(() =>
-    this.generator
-      .generate(
-        this.restart() ? this.count() : this.count() + 0,
-        this.mask()?.mask || ''
-      )
+  private generated = computed(() => {
+    this.restart();
+    const count = this.count();
+
+    return this.generator
+      .generate(count, this.mask()?.mask || '')
       .map(symbol => ({
         symbol: symbol,
         isError: false,
-      }))
-  );
+      }));
+  });
 
   typed = linkedSignal({
     source: () => this.generated(),
