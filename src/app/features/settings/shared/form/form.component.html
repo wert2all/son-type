@@ -9,7 +9,7 @@
           type="radio"
           name="active-mask"
           class="btn join-item"
-          [attr.aria-label]="settings().masks[mask].title"
+          [attr.aria-label]="typerSettings().masks[mask].title"
           [value]="mask" />
       }
     </div>
@@ -23,6 +23,7 @@
             symbols count
           </label>
           <input
+            id="count"
             name="count"
             type="text"
             class="input"
@@ -30,10 +31,11 @@
             [formControl]="form.controls['count']" />
         </div>
         <div>
-          <label for="lettres" class="fieldset-label text-lg">
+          <label for="letters" class="fieldset-label text-lg">
             letters in word
           </label>
           <input
+            id="letters"
             name="letters"
             type="text"
             class="input"

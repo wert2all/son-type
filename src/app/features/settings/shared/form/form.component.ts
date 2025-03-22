@@ -1,6 +1,9 @@
-import { Component, computed, effect, input, output } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { TyperMaskName, TyperSettings } from '../../../typer/typer.types';
+import { Store } from '@ngrx/store';
+import { TyperMaskName } from '../../../typer/typer.types';
+import { SettingsActions } from '../../store/settings.actions';
+import { settingsFeature } from '../../store/settings.reducers';
 @Component({
   standalone: true,
   selector: 'app-shared-settings-form',
@@ -8,10 +11,10 @@ import { TyperMaskName, TyperSettings } from '../../../typer/typer.types';
   templateUrl: './form.component.html',
 })
 export class SettingsFormComponent {
-  settings = input.required<TyperSettings>();
-  updated = output<TyperSettings>();
+  private store = inject(Store);
 
-  protected masks = computed(() => Object.keys(this.settings().masks));
+  protected typerSettings = this.store.selectSignal(settingsFeature.selectTyper);
+  protected masks = computed(() => Object.keys(this.typerSettings().masks));
   protected form = new FormGroup({
     activeMask: new FormControl<TyperMaskName>('numbers'),
     count: new FormControl<number>(0),
@@ -21,26 +24,30 @@ export class SettingsFormComponent {
   constructor() {
     effect(() => {
       this.form.setValue({
-        activeMask: this.settings().activeMask,
-        count: this.settings().count,
-        letters: this.settings().letters,
+        activeMask: this.typerSettings().activeMask,
+        count: this.typerSettings().count,
+        letters: this.typerSettings().letters,
       });
     });
     effect(() => {
       this.form.valueChanges.subscribe(value => {
-        const settings = this.settings();
-        if (value.count != null && settings.count !== value.count) {
-          this.updated.emit({ ...settings, count: value.count });
+        let typerSettings = this.typerSettings();
+        if (value.count != null && typerSettings.count !== value.count) {
+          typerSettings = { ...typerSettings, count: value.count };
         }
-        if (value.letters != null && settings.letters !== value.letters) {
-          this.updated.emit({ ...settings, letters: value.letters });
+        if (value.letters != null && typerSettings.letters !== value.letters) {
+          typerSettings = { ...typerSettings, letters: value.letters };
         }
         if (
           value.activeMask != null &&
-          settings.activeMask !== value.activeMask
+          typerSettings.activeMask !== value.activeMask
         ) {
-          this.updated.emit({ ...settings, activeMask: value.activeMask });
+          typerSettings = { ...typerSettings, activeMask: value.activeMask };
         }
+
+        this.store.dispatch(
+          SettingsActions.saveSettings({ typer: typerSettings })
+        );
       });
     });
   }

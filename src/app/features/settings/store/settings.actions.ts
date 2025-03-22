@@ -1,6 +1,9 @@
-import { createActionGroup } from '@ngrx/store';
+import { createActionGroup, props } from '@ngrx/store';
+import { TyperSettings } from './settings.types';
 
 export const SettingsActions = createActionGroup({
   source: 'Settings',
-  events: {},
+  events: {
+    'save settings': props<{ typer: TyperSettings }>(),
+  },
 });
