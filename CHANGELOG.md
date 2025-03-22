@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.8](https://github.com/wert2all/son-type/compare/v0.0.7...v0.0.8) (2025-03-22)
+
+### Features
+
+- add selectror for typer to shared store ([c1ad61e](https://github.com/wert2all/son-type/commit/c1ad61e12d94688f229a4dd6f5283e9689f99f1f))
+- addsetting store ([12ad76e](https://github.com/wert2all/son-type/commit/12ad76e81894ef209887b22a055cd31c824ed3a5))
+- create shared store ([94e40e5](https://github.com/wert2all/son-type/commit/94e40e550d1b81f008ddbdee5def307e462c4031))
+- install store ([91f9422](https://github.com/wert2all/son-type/commit/91f9422633de93aa4dc84a1c0a1e9ee17ccd8073))
+- saveing setting in state ([08ae0cf](https://github.com/wert2all/son-type/commit/08ae0cfb06dc83c84a0a7edc88d009da94f0c23f))
+
+### Bug Fixes
+
+- add shared store to store provider ([6eb5d83](https://github.com/wert2all/son-type/commit/6eb5d835a92420c30e6de4e09c0dc609b3982a74))
+- fix count of symbols for typer ([fb18238](https://github.com/wert2all/son-type/commit/fb18238c639ebe1b9803c623352f163700e02e84))
+- typer use store for expose settings ([1b6aadb](https://github.com/wert2all/son-type/commit/1b6aadb1c6c0ede0ff9983907ac87ae9309777d7))
+
 ## [0.0.7](https://github.com/wert2all/son-type/compare/v0.0.6...v0.0.7) (2025-03-21)
 
 ### Features
