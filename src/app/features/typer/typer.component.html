@@ -10,7 +10,7 @@
   [mask]="currentMask()"
   [count]="settings().count"
   [restart]="restartTick()"
-  (finished)="isFinished.set($event)" />
+  (finished)="finished($event)" />
 
 <app-salute [show]="isFinished()" />
 

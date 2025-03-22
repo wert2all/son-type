@@ -21,7 +21,7 @@ export class TyperInputComponent {
   mask = input.required<TyperMask | null>();
   count = input(100);
   restart = input<number>();
-  finished = output<boolean>();
+  finished = output<TyperSymbol[]>();
 
   private generator = inject(GeneratorService);
   private generated = computed(() => {
@@ -52,14 +52,16 @@ export class TyperInputComponent {
 
   private isFinished = computed(
     () =>
-      this.generated().length !== 0 &&
+      this.count() !== 0 &&
       this.should().length === 0 &&
-      this.typed().length === this.generated().length
+      this.typed().length === this.count()
   );
 
   constructor() {
     effect(() => {
-      this.finished.emit(this.isFinished());
+      if (this.isFinished()) {
+        this.finished.emit(this.typed());
+      }
     });
   }
 
