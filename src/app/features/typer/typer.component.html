@@ -9,7 +9,7 @@
 <app-typer-input
   [mask]="currentMask()"
   [count]="settings().count"
-  [wordLength]="settings().letters"
+  [wordLength]="wordLength()"
   [restart]="restartTick()"
   (finished)="finished($event)" />
 
