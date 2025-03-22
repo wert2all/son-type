@@ -7,7 +7,7 @@ import {
 import { SharedModalComponent } from '../../shared/modal/modal.component';
 import { SaluteComponent } from '../salute/salute.component';
 import { TyperInputComponent } from './input/input.component';
-import { TyperSettingsComponent } from './settings/settings.component';
+import { SettingsFormComponent } from '../settings/shared/form/form.component';
 import { TYPER_MASKS, TyperSettings } from './typer.types';
 
 @Component({
@@ -19,7 +19,7 @@ import { TYPER_MASKS, TyperSettings } from './typer.types';
     SaluteComponent,
     SharedModalComponent,
     NgIconComponent,
-    TyperSettingsComponent,
+    SettingsFormComponent,
   ],
   viewProviders: [provideIcons({ phosphorPassword, phosphorGearSix })],
 })

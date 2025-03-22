@@ -1,13 +1,13 @@
 import { Component, computed, effect, input, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { TyperMaskName, TyperSettings } from '../typer.types';
+import { TyperMaskName, TyperSettings } from '../../../typer/typer.types';
 @Component({
   standalone: true,
-  selector: 'app-typer-settings',
+  selector: 'app-shared-settings-form',
   imports: [ReactiveFormsModule],
-  templateUrl: './settings.component.html',
+  templateUrl: './form.component.html',
 })
-export class TyperSettingsComponent {
+export class SettingsFormComponent {
   settings = input.required<TyperSettings>();
   updated = output<TyperSettings>();
 
