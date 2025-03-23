@@ -1,20 +1,24 @@
+import { A11yModule } from '@angular/cdk/a11y';
 import {
   Component,
   computed,
   effect,
+  ElementRef,
   HostListener,
   inject,
   input,
   linkedSignal,
   output,
+  ViewChild,
 } from '@angular/core';
+import { AutofocusDirective } from '../../../shared/directives/autofocus.directive';
 import { SharedValueCardComponent } from '../../../shared/value-card/value-card.component';
 import { GeneratorService } from '../../generator.service';
 import { TyperMask, TyperSymbol } from '../typer.types';
 
 @Component({
   selector: 'app-typer-input',
-  imports: [SharedValueCardComponent],
+  imports: [SharedValueCardComponent, A11yModule, AutofocusDirective],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
 })
@@ -25,9 +29,13 @@ export class TyperInputComponent {
   restart = input<number>();
   finished = output<TyperSymbol[]>();
 
+  @ViewChild('inputField')
+  private inputField?: ElementRef;
+
   private generator = inject(GeneratorService);
   private generated = computed(() => {
     this.restart();
+    this.setFocusToInput();
     const count = this.count();
 
     return this.generator
@@ -65,6 +73,11 @@ export class TyperInputComponent {
         this.finished.emit(this.typed());
       }
     });
+  }
+
+  setFocusToInput() {
+    console.log('setFocusToInput');
+    this.inputField?.nativeElement.focus();
   }
 
   @HostListener('document:keypress', ['$event'])

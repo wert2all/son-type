@@ -1,4 +1,8 @@
-<div class="mono grid grid-cols-11 overflow-hidden py-8 text-7xl">
+<!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events -->
+<div
+  class="mono grid grid-cols-11 overflow-hidden py-8 text-7xl"
+  (click)="setFocusToInput()"
+  tabindex="0">
   <div
     class="typed col-span-5 content-center justify-self-end whitespace-nowrap">
     @for (item of typed(); track $index) {
@@ -7,9 +11,18 @@
       }}</span>
     }
   </div>
-  <app-shared-value-card
-    [value]="currentType()?.symbol || ''"
-    [textClass]="currentType()?.isError ? 'text-error' : ''" />
+  <div>
+    <app-shared-value-card
+      [value]="currentType()?.symbol || ''"
+      [textClass]="currentType()?.isError ? 'text-error' : ''" />
+    <input
+      #inputField
+      type="text"
+      class="input"
+      appAutofocus
+      cdkTrapFocus
+      [cdkTrapFocusAutoCapture]="true" />
+  </div>
   <div
     class="should col-span-5 content-center justify-self-start whitespace-nowrap">
     @for (item of should(); track $index) {
