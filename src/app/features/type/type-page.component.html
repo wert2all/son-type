@@ -1,0 +1,44 @@
+<a
+  class="btn btn-neutral btn-square"
+  tabindex="0"
+  (click)="openSettings.set(true)"
+  (keypress.enter)="openSettings.set(true)">
+  <ng-icon name="phosphorGearSix" size="32"></ng-icon>
+</a>
+
+<app-shared-typer (typed)="type$.next($event)">
+  <div class="mono grid grid-cols-11 overflow-hidden py-8 text-7xl">
+    <div
+      class="typed col-span-5 content-center justify-self-end whitespace-nowrap">
+      @for (item of typed$ | async; track $index) {
+        <span class="fade-in typed-item">{{ item }}</span>
+      }
+    </div>
+    <app-shared-value-card
+      [value]="(current$ | async) || ''"
+      [textClass]="(currentError$ | async) ? 'text-error' : ''" />
+    <div
+      class="should col-span-5 content-center justify-self-start whitespace-nowrap">
+      @for (item of should$ | async; track $index) {
+        <span class="typed-item">{{ item }}</span>
+      }
+    </div>
+  </div>
+</app-shared-typer>
+
+<app-shared-modal
+  [show]="isFinished()"
+  [closeOnPrimary]="true"
+  (closed)="restartTask.next(true)"
+  (primary)="restartTask.next(true)">
+  <app-typed-congratulation [rating]="rating()" />
+</app-shared-modal>
+
+<app-shared-modal
+  [show]="openSettings()"
+  [closeOnPrimary]="true"
+  title="settings"
+  primaryButtonTitle="Save"
+  (closed)="openSettings.set(false)">
+  <app-shared-settings-form />
+</app-shared-modal>
